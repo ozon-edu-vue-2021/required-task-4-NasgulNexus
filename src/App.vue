@@ -10,8 +10,8 @@ import Form from "./components/Form.vue";
 export default {
   name: "App",
   components: {
-    Form,
-  },
+    Form
+  }
 };
 </script>
 
@@ -22,12 +22,6 @@ export default {
   background-color: #fafafa;
   padding: 24px;
   box-sizing: border-box;
-}
-
-html,
-body,
-#app {
-  height: 100%;
 }
 
 * {

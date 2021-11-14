@@ -2,67 +2,67 @@
   <form class="form" @submit.prevent="someAction()">
     <h2>Личные данные</h2>
     <div>
-      <div class="row">
+      <div>
         <label for="surname">Фамилия</label>
-        <input v-model="surname" @blur="$v.surname.$touch()" id="surname" />
-        <div class="error" v-if="$v.surname.$error">
+        <input v-model="surname" id="surname" @blur="$v.surname.$touch()" />
+        <div v-if="$v.surname.$error" class="error">
           Фамилия должно содержать только Русские буквы
         </div>
       </div>
-      <div class="row">
+      <div>
         <label for="name">Имя</label>
         <input v-model="name" id="name" @blur="$v.name.$touch()" />
-        <div class="error" v-if="$v.name.$error">
+        <div v-if="$v.name.$error" class="error">
           Имя должно содержать только Русские буквы
         </div>
       </div>
-      <div class="row">
+      <div>
         <label for="patronymic">Отчество</label>
         <input
           v-model="patronymic"
           id="patronymic"
           @blur="$v.patronymic.$touch()"
         />
-        <div class="error" v-if="$v.patronymic.$error">
+        <div v-if="$v.patronymic.$error" class="error">
           Отчество должно содержать только Русские буквы
         </div>
       </div>
-      <div class="row">
+      <div>
         <label for="age">Дата рождения</label>
         <input
           v-model="age"
-          id="age"
           placeholder="дд.мм.гггг"
+          id="age"
           @blur="$v.age.$touch()"
         />
-        <div class="error" v-if="$v.age.$error">
+        <div v-if="!isAge || $v.age.$error" class="error">
           Дата рождения должна быть в формате ДД.ММ.ГГГГ
         </div>
       </div>
-      <div class="row">
+      <div>
         <label for="email">E-mail</label>
         <input v-model="email" id="email" @blur="$v.email.$touch()" />
-        <div class="error" v-if="$v.email.$error">
+        <div v-if="$v.email.$error" class="error">
           Почта должна быть в виде myinbox@inbox.adreesInbox
         </div>
       </div>
-      <div class="row">
+      <div>
         <span>Пол</span>
         <br />
         <input
-          class="radio"
+          v-model="pickedGender"
           type="radio"
           value="Men"
           id="Men"
-          v-model="pickedGender"
+          class="radio"
         />
         <label for="Men">Mужской</label>
         <input
-          class="radio"
+          v-model="pickedGender"
           type="radio"
           value="Woman"
           id="Woman"
-          v-model="pickedGender"
+          class="radio"
         />
         <label for="Woman">Женский</label>
       </div>
@@ -77,37 +77,37 @@
     </select>
     <div v-else>Ничего не найдено</div>
     <div v-if="selectedCountry === 'Russia'">
-      <div class="row">
+      <div>
         <label for="passportSeries">Серия</label>
         <input
           v-model="passportSeries"
           id="passportSeries"
           @blur="$v.passportSeries.$touch()"
         />
-        <div class="error" v-if="$v.passportSeries.$error">
+        <div v-if="$v.passportSeries.$error" class="error">
           Серия паспорта должна быть из 4 цифр
         </div>
       </div>
-      <div class="row">
+      <div>
         <label for="passportID">Номер</label>
         <input
           v-model.number="passportID"
-          @blur="$v.passportID.$touch()"
           id="passportID"
+          @blur="$v.passportID.$touch()"
         />
-        <div class="error" v-if="$v.passportID.$error">
+        <div v-if="$v.passportID.$error" class="error">
           Номер паспорта должен быть из 6 цифр
         </div>
       </div>
-      <div class="row">
+      <div>
         <label for="dateOfIssueOfPassport">Дата выдачи</label>
         <input
           v-model="dateOfIssueOfPassport"
+          placeholder="дд.мм.гггг"
           id="dateOfIssueOfPassport"
           @blur="$v.dateOfIssueOfPassport.$touch()"
-          placeholder="дд.мм.гггг"
         />
-        <div class="error" v-if="$v.dateOfIssueOfPassport.$error">
+        <div v-if="$v.dateOfIssueOfPassport.$error" class="error">
           Дата выдачи паспорта должна быть в формате ДД.ММ.ГГГГ
         </div>
       </div>
@@ -116,40 +116,40 @@
       <span>
         Иностранцы заполняют латинскими буквами. Например, Ivanov Ivan
       </span>
-      <div class="row">
+      <div>
         <label for="surnameInLatin">Фамилия на латинице</label>
         <input
           v-model="surnameInLatin"
-          @blur="$v.surnameInLatin.$touch()"
           id="surnameInLatin"
+          @blur="$v.surnameInLatin.$touch()"
         />
-        <div class="error" v-if="$v.surnameInLatin.$error">
+        <div v-if="$v.surnameInLatin.$error" class="error">
           Фамилия должно содержать только латинские буквы
         </div>
       </div>
-      <div class="row">
+      <div>
         <label for="nameInLatin">Имя на латинице</label>
         <input
           v-model="nameInLatin"
-          @blur="$v.nameInLatin.$touch()"
           id="nameInLatin"
+          @blur="$v.nameInLatin.$touch()"
         />
-        <div class="error" v-if="$v.nameInLatin.$error">
+        <div v-if="$v.nameInLatin.$error" class="error">
           Имя должно содержать только латинские буквы
         </div>
       </div>
-      <div class="row">
+      <div>
         <label for="foreignPassportNumber">Номер</label>
         <input
           v-model.number="foreignPassportNumber"
-          @blur="$v.foreignPassportNumber.$touch()"
           id="foreignPassportNumber"
+          @blur="$v.foreignPassportNumber.$touch()"
         />
-        <div class="error" v-if="$v.foreignPassportNumber.$error">
+        <div v-if="$v.foreignPassportNumber.$error" class="error">
           Должны быть только цифры
         </div>
       </div>
-      <div class="row">
+      <div>
         <span>Страна выдачи</span>
       </div>
       <select
@@ -162,7 +162,7 @@
         </option>
       </select>
       <div v-else>Ничего не найдено</div>
-      <div class="row">
+      <div>
         <label for="typeOfPassport">Тип паспорта</label>
         <select v-if="allpassportTypes.length" v-model="typeOfPassport">
           <option disabled>Выберите один из вариантов</option>
@@ -177,51 +177,56 @@
       <span>Меняли ли фамилию или имя</span>
       <br />
       <input
-        class="radio"
+        v-model="pickedNewSurnameOrName"
         type="radio"
         value="Yes"
-        v-model="pickedNewSurnameOrName"
+        class="radio"
       />
       <label>Да</label>
       <input
-        class="radio"
+        v-model="pickedNewSurnameOrName"
         type="radio"
         value="No"
-        v-model="pickedNewSurnameOrName"
+        class="radio"
       />
       <label>Нет</label>
     </div>
     <div v-if="pickedNewSurnameOrName === 'Yes'">
-      <div class="row">
+      <div>
         <label for="formerSurname">Фамилия</label>
         <br />
         <input
           v-model="formerSurname"
-          @blur="$v.formerSurname.$touch()"
           id="formerSurname"
+          @blur="$v.formerSurname.$touch()"
         />
-        <div class="error" v-if="$v.formerSurname.$error">
+        <div v-if="$v.formerSurname.$error" class="error">
           Фамилия должно содержать только Русские буквы
         </div>
       </div>
-      <div class="row">
+      <div>
         <label for="formerName">Имя</label>
         <input
           v-model="formerName"
           id="formerName"
           @blur="$v.formerName.$touch()"
         />
-        <div class="error" v-if="$v.formerName.$error">
+        <div v-if="$v.formerName.$error" class="error">
           Имя должно содержать только Русские буквы
         </div>
       </div>
     </div>
-    <button type="submit">Отправить</button>
+    <button
+      type="submit"
+      :disabled="!isComplete || $v.$anyError === true || !isAge"
+    >
+      Отправить
+    </button>
   </form>
 </template>
 
 <script>
-import { required, maxLength } from "vuelidate/lib/validators";
+import { required, maxLength, minLength } from "vuelidate/lib/validators";
 import moment from "moment";
 import citizenships from "@/assets/data/citizenships.json";
 import passportTypes from "@/assets/data/passport-types.json";
@@ -252,11 +257,67 @@ export default {
       formerSurname: null,
       formerName: null,
       //Вспомогательные данные
-      isDropdownOpen: false,
       allcitizenships: citizenships,
       allpassportTypes: passportTypes,
-      allData: {}
+      allData: {},
+      time: moment().format("DDMMYYYY")
     };
+  },
+  computed: {
+    isAge() {
+      if (this.age) {
+        if (
+          parseInt(this.time.slice(4), 10) < parseInt(this.age.slice(6), 10)
+        ) {
+          return false;
+        } else if (
+          parseInt(this.time.slice(4), 10) > parseInt(this.age.slice(6), 10)
+        ) {
+          return true;
+        } else if (
+          parseInt(this.time.slice(2, 4), 10) <
+          parseInt(this.age.slice(3, 5), 10)
+        ) {
+          return false;
+        } else if (
+          parseInt(this.time.slice(2, 4), 10) >
+          parseInt(this.age.slice(3, 5), 10)
+        ) {
+          return true;
+        } else if (
+          parseInt(this.time.slice(0, 2), 10) >=
+          parseInt(this.age.slice(0, 2), 10)
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return true;
+      }
+    },
+    isComplete() {
+      return this.surname &&
+        this.name &&
+        this.age &&
+        this.patronymic &&
+        this.pickedGender &&
+        this.email &&
+        this.selectedCountry === "Russia"
+        ? this.passportID &&
+          this.dateOfIssueOfPassport &&
+          this.passportSeries &&
+          this.pickedNewSurnameOrName == "Yes"
+          ? this.formerSurname && this.formerName
+          : this.pickedNewSurnameOrName == "No"
+        : this.surnameInLatin &&
+          this.foreignPassportNumber &&
+          this.countryOfIssueOfThePassport &&
+          this.typeOfPassport &&
+          this.pickedNewSurnameOrName == "Yes"
+        ? this.formerSurname && this.formerName
+        : this.pickedNewSurnameOrName == "No";
+    }
   },
   methods: {
     someAction() {
@@ -265,11 +326,10 @@ export default {
       this.allData.name = this.name;
       this.allData.age = this.age;
       this.allData.patronymic = this.patronymic;
-      this.allData.pickedGender = this.pickedGende;
+      this.allData.pickedGender = this.pickedGender;
       this.allData.email = this.email;
       //Паспортные данные
       this.allData.selectedCountry = this.selectedCountry;
-      this.allData.selectedCountry2 = this.selectedCountry2;
       //Когда гражданство Россия
       this.allData.passportID = this.passportID;
       this.allData.dateOfIssueOfPassport = this.dateOfIssueOfPassport;
@@ -286,13 +346,6 @@ export default {
       this.allData.formerSurname = this.formerSurname;
       this.allData.formerName = this.formerName;
       console.log(this.allData);
-    },
-    hideDropdown() {
-      this.isDropdownOpen = false;
-    },
-    onCountryCliked(selectedCountry) {
-      this.selectedCountry2 = selectedCountry;
-      this.hideDropdown();
     }
   },
   validations: {
@@ -315,11 +368,13 @@ export default {
     passportID: {
       required,
       maxLength: maxLength(6),
+      minLength: minLength(6),
       validFormat: val => /\d/.test(val)
     },
     passportSeries: {
       required,
       maxLength: maxLength(4),
+      minLength: minLength(4),
       validFormat: val => /\d/.test(val)
     },
     dateOfIssueOfPassport: {
@@ -329,7 +384,7 @@ export default {
     email: {
       required,
       validFormat: val =>
-        /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(
+        /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i.test(
           val
         )
     },
@@ -361,17 +416,17 @@ export default {
 .form {
   max-width: 600px;
   margin: auto;
-  background: white;
-  border-radius: 30px;
   padding: 20px;
+  border-radius: 30px;
+  background: white;
 }
 input {
   width: 100%;
   height: 40px;
-  border-radius: 5px;
   padding: 5px;
-  font-size: 18px;
   margin-bottom: 10px;
+  border-radius: 5px;
+  font-size: 18px;
 }
 label {
   font-size: 18px;
@@ -389,17 +444,17 @@ span {
   color: red;
 }
 button {
+  margin: 10px;
+  border-radius: 10px;
   font-size: 18px;
   background-color: rgba(88, 121, 230, 0.192);
-  border-radius: 10px;
-  margin: 10px;
 }
 select {
   width: 100%;
   height: 40px;
-  border-radius: 5px;
   padding: 9px;
-  font-size: 18px;
   margin-bottom: 10px;
+  border-radius: 5px;
+  font-size: 18px;
 }
 </style>

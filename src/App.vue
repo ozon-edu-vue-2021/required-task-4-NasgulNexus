@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <Form />
+    <FormValidation />
   </div>
 </template>
 
 <script>
-import Form from "./components/Form.vue";
+import FormValidation from "./components/FormValidation.vue";
 
 export default {
   name: "App",
   components: {
-    Form,
-  },
+    FormValidation
+  }
 };
 </script>
 
@@ -22,12 +22,6 @@ export default {
   background-color: #fafafa;
   padding: 24px;
   box-sizing: border-box;
-}
-
-html,
-body,
-#app {
-  height: 100%;
 }
 
 * {

@@ -283,6 +283,12 @@ export default {
         : false;
     },
     isComplete() {
+      let pickedNewSurnameName =
+        this.selectedCountry !== "Russia"
+          ? this.pickedNewSurnameOrName == "Yes"
+            ? this.formerSurname && this.formerName
+            : this.pickedNewSurnameOrName == "No"
+          : false;
       return this.surname &&
         this.name &&
         this.age &&
@@ -297,12 +303,9 @@ export default {
           ? this.formerSurname && this.formerName
           : this.pickedNewSurnameOrName == "No"
         : this.surnameInLatin &&
-          this.foreignPassportNumber &&
-          this.countryOfIssueOfThePassport &&
-          this.typeOfPassport &&
-          this.pickedNewSurnameOrName == "Yes"
-        ? this.formerSurname && this.formerName
-        : this.pickedNewSurnameOrName == "No";
+            this.foreignPassportNumber &&
+            this.countryOfIssueOfThePassport &&
+            this.typeOfPassport && pickedNewSurnameName;
     }
   },
   methods: {

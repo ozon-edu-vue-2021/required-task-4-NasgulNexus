@@ -265,36 +265,22 @@ export default {
   },
   computed: {
     isAge() {
-      if (this.age) {
-        if (
-          parseInt(this.time.slice(4), 10) < parseInt(this.age.slice(6), 10)
-        ) {
-          return false;
-        } else if (
-          parseInt(this.time.slice(4), 10) > parseInt(this.age.slice(6), 10)
-        ) {
-          return true;
-        } else if (
-          parseInt(this.time.slice(2, 4), 10) <
+      return !this.age
+        ? true
+        : parseInt(this.time.slice(4), 10) < parseInt(this.age.slice(6), 10)
+        ? false
+        : parseInt(this.time.slice(4), 10) > parseInt(this.age.slice(6), 10)
+        ? true
+        : parseInt(this.time.slice(2, 4), 10) <
           parseInt(this.age.slice(3, 5), 10)
-        ) {
-          return false;
-        } else if (
-          parseInt(this.time.slice(2, 4), 10) >
+        ? false
+        : parseInt(this.time.slice(2, 4), 10) >
           parseInt(this.age.slice(3, 5), 10)
-        ) {
-          return true;
-        } else if (
-          parseInt(this.time.slice(0, 2), 10) >=
+        ? true
+        : parseInt(this.time.slice(0, 2), 10) >=
           parseInt(this.age.slice(0, 2), 10)
-        ) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        return true;
-      }
+        ? true
+        : false;
     },
     isComplete() {
       return this.surname &&
